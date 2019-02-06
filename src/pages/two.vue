@@ -6,6 +6,8 @@
       <h2 class="subtitle">Nuxt TypeScript Project</h2>
       <input v-model="hatena">
       <p>{{hatena}}</p>
+      <h3>{{value}}</h3>
+      <button @click="handleClick"></button>
     </div>
   </section>
 </template>
@@ -15,17 +17,22 @@ import { Component, Vue } from 'vue-property-decorator'
 import Logo from '../components/Logo.vue'
 
 @Component({
-  data() {
-    return {
-      value: 'hello',
-      hatena: '',
-    }
-  },
   components: {
     Logo,
   },
 })
-export default class Index extends Vue {}
+export default class Index extends Vue {
+  hatena: string = ''
+  value: string = 'asdf'
+
+  handleClick(): void {
+    if (this.hatena === '') {
+      console.log('何も入ってない！')
+      return
+    }
+    this.value = this.hatena
+  }
+}
 </script>
 
 <style scoped>
